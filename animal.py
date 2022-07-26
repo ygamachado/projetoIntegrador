@@ -5,7 +5,7 @@ class Animal():
         self.sexo=sexo
         self.altura=altura
         self.deficiencia=deficiencia
-# ad
+# ada
         animalOb = animal.Animal(idade, raca, sexo, altura, deficiencia
 
 
