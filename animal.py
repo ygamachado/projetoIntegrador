@@ -6,7 +6,7 @@ class Animal():
         self.altura=altura
         self.deficiencia=deficiencia
 # sadacx
-        animalOb = animal.Animal(idade, raca, sexo, altura, deficiencia
+#         animalOb = animal.Animal(idade, raca, sexo, altura, deficiencia
 
 
 
