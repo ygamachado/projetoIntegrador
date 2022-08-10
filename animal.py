@@ -7,7 +7,7 @@ class Animal():
         self.porte_animal=porte_animal
         self.deficiencia=deficiencia
         self.vacinacao=vacina
-
+d
         def __init__(self,nome):
             self.nome=nome
 
