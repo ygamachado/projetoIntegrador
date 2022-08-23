@@ -1,41 +1,67 @@
-class Animal():
-    def __init__(self, nome,idade, raca, sexo, porte_animal, deficiencia,vacina):
-        self.nome=nome
-        self.idade=idade
-        self.raca=raca
-        self.sexo=sexo
-        self.porte_animal=porte_animal
-        self.deficiencia=deficiencia
-        self.vacinacao=vacina
-d
-        def __init__(self,nome):
-            self.nome=nome
+import mysql.connector
 
-            veri_coleira=input('se o animal possui coleira digite (S), senao (N)')
-
-            if(veri_coleira =='s'or veri_coleira=='S'):
-                print('digite o nome do animal')
-                nome=input('')
+conexao = mysql.connector.connect(
+    host='localhost',
+    user='root',
+    password='',
+    database='ong'
+)
 
 
-            else:
-                print('continue o cadastro')
-
-    def vacin_animais (self):
-
-        print('digite (S) se  animal é vacinado\n digite(N) se o animal não for vacinado\n ')
-        print('digite(NS) se não ha informações se o animal é vacinado ')
-        veri_vacina=input('')
-
-        if (veri_vacina=='s'or veri_vacina=='S'):
-            print('quantas vacinas oanimal tomo')
-            tipos_vacina=[]
-            quantidade_vacina=int(input(''))
-
-            print('quais foram as vacinas que o animal tomou')
-            tipos_vacina.append(input(''))
+class Animal ():
+    def __init__(self, nome, idade, raca, sexo, porte_animal, deficiencia, vacina):
+        self.nome = nome
+        self.idade = idade
+        self.raca = raca
+        self.sexo = sexo
+        self.porte_animal = porte_animal
+        self.deficiencia = deficiencia
+        self.vacinacao = vacina
 
 
+    def cadastroanimal(self):
+        # nome do animal se tiver uma colera e tiver o nome na coleira tbm
+        conexao = mysql.connector.connect(
+            host='localhost',
+            user='root',
+            password='',
+            database='ong'
+        )
+        cursor=conexao.cursor()
+
+        print(' CADASTRO DE ANIMAIS')
+        print('')
+
+        print('o animal pssui nome? s/n')
+        vericada=input('digite:')
+
+        if (vericada=='s') or (vericada=='S'):
+            print('digte o nome do animal')
+            nomeanimal=input('digite:')
+
+        else:
+            print('')
+    # cor do animal
+    print('digite a cor do animal')
+    coranimal=("digte:")
+    print('')
+        # porte do animal
+    print(' porte do animal\n piqueno porte digite: (P)\n medio porte digite: (M)\n auto porte digite (A)')
+    veriporte=input('digite:')
+
+    if (veriporte=='p') or (veriporte=='P'):
+        porte='P'
+
+    elif (veriporte=='m') or (veriporte=='M'):
+        porte='M'
+
+    elif (veriporte=='a') or (veriporte=='A'):
+        porte='a'
+
+    else:
+        print('ERRO')
+        print('NENHUMA DAS OPÇÕ~ES FIU SELECINADAS')
+        print('volte ao menu com a tecla ()')
 
 
 
@@ -48,16 +74,9 @@ d
 
 
 
+        cursor.close()
+        conexao.close()
 
 
 
 
-
-
-
-
-
-
-
-
-# funçoes: se possui deficiencia, animal castrado
