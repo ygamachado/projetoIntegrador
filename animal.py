@@ -20,12 +20,14 @@ class Animal ():
 # INDICE DA FUNLAO DE CADASTRO DE ANIMAIS
 
     def cadastroanimal(self):
+
         # nome do animal se tiver uma colera e tiver o nome na coleira tbm
         conexao = mysql.connector.connect(
             host='localhost',
             user='root',
             password='',
             database='ong'
+
         )
         cursor=conexao.cursor()
 
@@ -95,8 +97,8 @@ class Animal ():
             print('ERRO')
             print('COMANDO NÃO FOI SEGUIDO CORRETAMENTE')
 
-
-
+# teno que dar 9 espaço para dicar no espaçamento serto
+# espaçamento esta errado
 
 
 
