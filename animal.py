@@ -9,6 +9,7 @@ conexao = mysql.connector.connect(
 
 
 class Animal ():
+
     def __init__(self, nome, idade, raca, sexo, porte_animal, deficiencia, vacina):
         self.nome = nome
         self.idade = idade
@@ -24,31 +25,42 @@ class Animal ():
 
 
 
+
     # nome do animal se tiver uma colera e tiver o nome na coleira tbm
         conexao = mysql.connector.connect(
-        host='localhost',
-        user='root',
-        password='',
-        database='ong'
-
+            host='localhost',
+            user='root',
+            password='',
+            database='ong'
         )
+
+
         cursor = conexao.cursor()
 
         print(' CADASTRO DE ANIMAIS')
         print('')
+# n sei ara q serve esse id exame
+        print('digite o enxame')
+        idexame=int(input('digite'))
 
+# nome do animal se tiver
         print('o animal pssui nome? s/n')
-        vericada = input('digite:')
+        verino=input('digite:')
 
-        if (vericada == 's') or (vericada == 'S'):
-            print('digte o nome do animal')
-            nomeanimal = input('digite:')
+        if (verino=='n') or (verino=='N'):
+           nomeanimal='N'
+
+        elif (verino=='s') or (verino=='S'):
+            print('digite o nome que esta na coleira:')
+            nomeanimal=input('digite:')
 
         else:
-            print('')
+            print('ERRO')
+            print('NENHUMA DAS OPÇÕES FOI SELECINADAS')
+            print('volte ao menu com a tecla ()')
 
 
-# cor do animal
+    # cor do animal
         print('digite a cor do animal')
         coranimal = ("digte:")
         print('')
@@ -71,7 +83,7 @@ class Animal ():
 
         else:
             print('ERRO')
-            print('NENHUMA DAS OPÇÕES FIU SELECINADAS')
+            print('NENHUMA DAS OPÇÕES FOI SELECINADAS')
             print('volte ao menu com a tecla ()')
 
 # RAÇA DO ANIMAL
@@ -88,28 +100,33 @@ class Animal ():
         veridis = ('digite:')
 
         if (veridis == 's') or (veridis == 'S'):
-            disponivel = 'DISPONIVEL'
+            disponivel = 'S'
 
 
         elif (veridis == 'n') or (veridis == 'N'):
 
-            disponivel = 'INDISPOIVEL'
+            disponivel = 'N'
 
 
         else:
             print('ERRO')
             print('COMANDO NÃO FOI SEGUIDO CORRETAMENTE')
+
+
+        print('o animal ja foi adotado? S/N')
+        adotado=input('digite:')
+
 # deficincia
 
         print('o animal pessui possui alguma deficciencia fisica? s/n')
         veridef=input('digite:')
 
-        if (veridef=='s') or (veridis=='S'):
-                print('digtie a deficencia fisica do animal')
-                deficiencia=input(('digite:'))
+        if (veridef=='s') or (veridef=='S'):
+            print('digtie a deficencia fisica do animal')
+            deficiencia=input(('digite:'))
 
-        elif (veridef=='n') or (veridis=='N'):
-            deficiencia='sem dificiencia'
+        elif (veridef=='n') or (veridef=='N'):
+            deficiencia='N'
 
         else:
             print('ERRO')
@@ -120,7 +137,7 @@ class Animal ():
         print('animal é castrado? S/N')
         castrado=('digite:')
 
-#  exames animal
+#  exameas animal
         print('o animal a fez algum exame? S/N')
         veriex=input('digite')
 
@@ -144,9 +161,21 @@ class Animal ():
         print('data que o animal foi encotrado')
         dataresgate=input('digite:')
 
-        comando=f'insert into cad_animal(id_exame, nome, cor, porte, raça, idade, disponivel, adotado, deficiente, castrado, quant_exames,local_encontro, data_encontro) values('1 ', 'chulapa', 'preto', 'p', 'pinsher', '2', 'n', 'n', 'n', 's', '0', 'Rua Castroalves', 20220218);'
 
 
+
+
+
+
+
+        comando=f'insert into cad_animal(id_exame, nome, cor, porte, raça, idade, disponivel, adotado, deficiente, castrado, quant_exames,local_encontro, data_encontro) values("{idexame}","{nomeanimal}","{coranimal}","{porte}","{raca}","{idade}","{disponivel}","{adotado}","{deficiencia}","{castrado}","{enxames}","{localecontrado}","{dataresgate}")'
+        cursor.execute(comando)
+        conexao.commit()
+        resultado=cursor.fetchall()
+        cursor.close()
+        conexao.close()
+
+    cadastroanimal()
 
 
 
@@ -157,11 +186,6 @@ class Animal ():
 
 
 
-
-        cursor.close()
-        conexao.close()
-
-    cadastroanimal()
 
 
 
