@@ -4,14 +4,14 @@ import Adotante
 class endereco(Adotante.adotante):
     def __init__(self, id_endereco, logradouro, numero, bairro, cidade, uf, cep, id_adotante, nome, nascimento, telefone1, telefone2, email, usuario, senha):
         super().__init__(id_adotante, nome, nascimento, telefone1, telefone2, email, usuario, senha)
-        self.id_endereco = id_endereco
-        self.id_adotante = id_adotante
-        self.logradouro = logradouro
-        self.numero = numero
-        self.bairro = bairro
-        self.cidade = cidade
-        self.uf = uf
-        self.cep = cep
+        self.__id_endereco = id_endereco
+        self.__id_adotante = id_adotante
+        self.__logradouro = logradouro
+        self.__numero = numero
+        self.__bairro = bairro
+        self.__cidade = cidade
+        self.__uf = uf
+        self.__cep = cep
 
     @classmethod
     def cadastro_endereco(self, id_endereco, id_adotante, logradouro, numero, bairro, cidade, uf, cep):

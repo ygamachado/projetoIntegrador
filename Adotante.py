@@ -2,14 +2,14 @@ import mysql.connector
 
 class adotante:
     def __init__(self, id_adotante, nome, nascimento, telefone1, telefone2, email, usuario, senha):
-        self.id_adotante = id_adotante
-        self.nome = nome
-        self.data_nasc = nascimento
-        self.telefone1 = telefone1
-        self.telefone2 = telefone2
-        self.email = email
-        self.usuario = usuario
-        self.senha = senha
+        self.__id_adotante = id_adotante
+        self.__nome = nome
+        self.__data_nasc = nascimento
+        self.__telefone1 = telefone1
+        self.__telefone2 = telefone2
+        self.__email = email
+        self.__usuario = usuario
+        self.__senha = senha
 
     @classmethod
     def cadastro_adotante(self, id_adotante, nome, nascimento, telefone1, telefone2, email, usuario, senha):
