@@ -1,5 +1,6 @@
 import Adotante
 import Adotante_Endereço
+import animal
 
 # -- Método para cadastro de adotante
 
@@ -168,10 +169,10 @@ def cadastroanimal():
 
     if (veriex == 's') or (veriex == 'S'):
         print('quantos?')
-        enxames = int(input(('digite:')))
+        exames = int(input(('digite:')))
 
     elif (veriex == 'n') or (veriex == 'N'):
-        enxames = 0
+        exames = 0
 
     else:
         print('ERRO')
@@ -191,4 +192,10 @@ def cadastroanimal():
     dataresgate = input('digite:')
     print('')
 
-    print('CADASTRO C0NCLUIDO COM SUCESSO !!')
+    print('deseja salva? S/N')
+    veriseiv=input('digite:')
+    if(veriseiv=='s') or (veriseiv=='S'):
+        infor_animal=animal.Animal(idexame,nomeanimal,coranimal,porte,raca,idade,disponivel,adotado,deficiencia,castrado,exames,localecontrado,dataresgate)
+        infor_animal.
+        print('CADASTRO C0NCLUIDO COM SUCESSO !!')
+
