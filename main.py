@@ -45,7 +45,7 @@ def cadastroanimal():
 
     # n sei ara q serve esse id exame
     print('digite o exame valor a enserir terar de ser inteiro')
-    idexame = int(input('digite:'))
+    id_exame = int(input('digite:'))
 
     print('')
 
@@ -71,7 +71,7 @@ def cadastroanimal():
 
     # cor do animal
     print('digite a cor do animal')
-    coranimal =input("digite:")
+    cor =input("digite:")
     print('')
 
 
@@ -145,10 +145,10 @@ def cadastroanimal():
 
     if (veridef == 's') or (veridef == 'S'):
 
-        deficiencia ='S'
+        deficiente ='S'
 
     elif (veridef == 'n') or (veridef == 'N'):
-        deficiencia = 'N'
+        deficiente = 'N'
 
     else:
         print('ERRO')
@@ -182,20 +182,26 @@ def cadastroanimal():
 
     # local que o animal foi encotrado
     print('qual foi o local que o animal foi encontrado/resgatado')
-    localecontrado = input('digite:')
+    local_encontro = input('digite:')
     print('')
 
 
     # data que o animal foi encontrado
 
     print('data que o animal foi encotrado')
-    dataresgate = input('digite:')
+    data_encontro =input('digite:')
     print('')
+    infor_animal = animal.Animal(id_exame, nomeanimal, cor, porte, raca, idade, disponivel, adotado, deficiente,castrado, exames, local_encontro, data_encontro)
 
     print('deseja salva? S/N')
     veriseiv=input('digite:')
     if(veriseiv=='s') or (veriseiv=='S'):
-        infor_animal=animal.Animal(idexame,nomeanimal,coranimal,porte,raca,idade,disponivel,adotado,deficiencia,castrado,exames,localecontrado,dataresgate)
-        infor_animal.
+
+        infor_animal.cadastrar(id_exame,nomeanimal,cor,porte,raca,idade,disponivel,adotado,deficiente,castrado,exames,local_encontro,data_encontro)
         print('CADASTRO C0NCLUIDO COM SUCESSO !!')
 
+    else:
+        print("\n===================== Os dados não foram salvos =====================")
+
+
+cadastroanimal()

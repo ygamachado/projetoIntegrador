@@ -11,24 +11,24 @@ conexao = mysql.connector.connect(
 class Animal ():
 
 
-    def __init__(self,idexame, nomeanimal, cor, idade, raca, sexo, porte,disponivel, deficiencia, adotado,castrado,exames,localecontrado,dataresgate):
+    def __init__(self,id_exame, nomeanimal, cor, idade, raca,porte,disponivel, deficiente, adotado,castrado,exames,local_encontro,data_encontro):
+
+        self.ide_exame = id_exame
         self.nome = nomeanimal
         self.idade = idade
         self.raca = raca
-        self.sexo = sexo
         self.porte_animal = porte
-        self.deficiencia = deficiencia
-        self.ideexame=idexame
-        self.coranimal=cor
-        self.disponivel_doacao=disponivel
+        self.deficiente = deficiente
+        self.cor=cor
+        self.disponivel=disponivel
         self.adotado=adotado
         self.castrado=castrado
         self.exames=exames
-        self.localencontrado=localecontrado
-        self.dataresgate=dataresgate
+        self.local_encontro=local_encontro
+        self.data_encontro=data_encontro
 
     @classmethod
-    def cadastrar(self,idexame, nomeanimal, coranimal, idade, raca, porte,disponivel, deficiencia, adotado,castrado,exames,localecontrado,dataresgate):
+    def cadastrar(self,id_exame, nomeanimal, cor, idade, raca, porte,disponivel, deficiente, adotado,castrado,exames,local_encontro,data_encontro):
         connection = mysql.connector.connect(
             host='localhost',
             user='root',
@@ -36,22 +36,22 @@ class Animal ():
             database='ong'
         )
         cursor = connection.cursor()
-        comando = f'insert into cad_animal(id_exame, nome, cor, porte, raça, idade, disponivel, adotado, deficiente, castrado, quant_exames,local_encontro, data_encontro) values("{idexame}","{nomeanimal}","{coranimal}","{porte}","{raca}","{idade}","{disponivel}","{adotado}","{deficiencia}","{castrado}","{exames}","{localecontrado}","{dataresgate}")'
+        comando = f'insert into cad_animal(id_exame, nome, cor, porte, raça, idade, disponivel, adotado, deficiente, castrado, quant_exames,local_encontro, data_encontro) values("{id_exame}","{nomeanimal}","{cor}","{idade}","{raca}","{disponivel}","{adotado}","{deficiente}","{castrado}","{exames}","{local_encontro}","{data_encontro}")'
         data=(
 
-            f"{idexame}",
+            f"{id_exame}",
             f"{nomeanimal}",
-            f"{coranimal}",
+            f"{cor}",
             f"{porte}",
             f"{raca}",
             f"{idade}",
             f"{disponivel}",
             f"{adotado}",
-            f"{deficiencia}",
+            f"{deficiente}",
             f"{castrado}",
             f"{exames}",
-            f"{localecontrado}",
-            f"{dataresgate}"
+            f"{local_encontro}",
+            f"{data_encontro}"
         )
         cursor.execute(comando,data)
         connection.commit()
