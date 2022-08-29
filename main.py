@@ -191,7 +191,7 @@ def cadastroanimal():
     print('data que o animal foi encotrado')
     data_encontro =input('digite:')
     print('')
-    infor_animal = animal.Animal(id_exame, nomeanimal, cor, porte, raca, idade, disponivel, adotado, deficiente,castrado, exames, local_encontro, data_encontro)
+    infor_animal = animal.Animal(id_exame, nomeanimal, cor, porte, raca,idade, disponivel, adotado, deficiente,castrado, exames, local_encontro, data_encontro)
 
     print('deseja salva? S/N')
     veriseiv=input('digite:')

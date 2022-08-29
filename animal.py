@@ -28,7 +28,7 @@ class Animal ():
         self.data_encontro=data_encontro
 
     @classmethod
-    def cadastrar(self,id_exame, nomeanimal, cor, idade, raca, porte,disponivel, deficiente, adotado,castrado,exames,local_encontro,data_encontro):
+    def cadastrar(self,id_exame, nomeanimal, cor, porte,raca, idade,disponivel, adotado, deficiente,castrado,exames,local_encontro,data_encontro):
         connection = mysql.connector.connect(
             host='localhost',
             user='root',
@@ -36,7 +36,7 @@ class Animal ():
             database='ong'
         )
         cursor = connection.cursor()
-        comando = f'insert into cad_animal(id_exame, nome, cor, porte, raça, idade, disponivel, adotado, deficiente, castrado, quant_exames,local_encontro, data_encontro) values("{id_exame}","{nomeanimal}","{cor}","{idade}","{raca}","{disponivel}","{adotado}","{deficiente}","{castrado}","{exames}","{local_encontro}","{data_encontro}")'
+        comando = f'insert into cad_animal(id_exame, nome, cor, porte, raça, idade, disponivel, adotado, deficiente, castrado, quant_exames,local_encontro, data_encontro) values(%s,%s,%s,%s,%s,%s,%s,%s, %s,%s,%s,%s,%s)'
         data=(
 
             f"{id_exame}",
