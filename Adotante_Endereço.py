@@ -88,3 +88,23 @@ class endereco(Adotante.adotante):
         connection.close()
 
         print("\n=====================", recordsaffected, "Registro alterado com sucesso =====================")
+
+    @classmethod
+    def deletar_enderecos(self, id_endereco):
+        connection = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="",
+            database="ong"
+        )
+        cursor = connection.cursor()
+
+        comando_delete = "DELETE FROM endereço WHERE id_endereço = %s"
+        data = (id_endereco,)
+
+        cursor.execute(comando_delete, data)
+        connection.commit()
+
+
+        cursor.close()
+        connection.close()

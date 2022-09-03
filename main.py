@@ -42,7 +42,7 @@ def consultando_adotantes():
     selecionar_enderecos = Adotante_Endereço.endereco.consultar_enderecos()
 
 def alterar_adotantes_pessoais():
-    dados_adotantes()
+    consultando_adotantes()
     id_adotante = int(input("\nDigite o índice do adotante: "))
     alterar = Adotante.adotante.selecionar_adotantes(id_adotante)
     print("\nUsuário de ID", id_adotante, "selecionado")
@@ -64,7 +64,7 @@ def alterar_adotantes_pessoais():
         print("\n===================== Os dados não foram alterados =====================\n")
 
 def alterar_adotantes_enderecos():
-    dados_adotantes()
+    consultando_adotantes()
     id_endereco = int(input("\nDigite o índice de endereço do adotante: "))
     alterar_endereco = Adotante_Endereço.endereco
     print("\nUsuário do ID de endereço", id_endereco, "selecionado")
@@ -79,6 +79,20 @@ def alterar_adotantes_enderecos():
         alterar_endereco.atualizar_enderecos(id_endereco, id_endereco, logradouro, numero, bairro, cidade, uf, cep)
     else:
         print("\n===================== Os dados não foram alterados =====================")
+
+def excluir_adotantes():
+    consultando_adotantes()
+    id_adotante = int(input("\nDigite o índice do usuário a ser deletado: "))
+    deletar = Adotante.adotante.selecionar_adotantes(id_adotante)
+    deletar_end = Adotante_Endereço.endereco
+    print("\nTem certeza que deseja deletar o usuário de ID", id_adotante, "? s/n ")
+    confirmar = input("> ")
+    if (confirmar == "s") or (confirmar == "S"):
+        deletar.deletar_adotantes(id_adotante)
+        deletar_end.deletar_enderecos(id_adotante)
+    else:
+        print("\n===================== Os dados não foram excluídos =====================")
+
 
 def cadastroanimal():
 

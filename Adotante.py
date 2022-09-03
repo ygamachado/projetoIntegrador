@@ -105,3 +105,25 @@ class adotante:
         connection.close()
 
         print("\n=====================", recordsaffected, "Registro alterado com sucesso =====================\n")
+
+    def deletar_adotantes(self, id_adotante):
+        connection = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="",
+            database="ong"
+        )
+        cursor = connection.cursor()
+
+        comando_delete = "DELETE FROM adotante WHERE id_adotante = %s"
+        data = (id_adotante,)
+
+        cursor.execute(comando_delete, data)
+        connection.commit()
+
+        recordsaffected = cursor.rowcount
+
+        cursor.close()
+        connection.close()
+
+        print("\n=====================", recordsaffected, "Registro excluído com sucesso =====================")
