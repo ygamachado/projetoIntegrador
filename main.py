@@ -35,6 +35,12 @@ def cadastrando_adotante():
     else:
         print("\n===================== Os dados não foram salvos =====================")
 
+def consultando_adotantes():
+    print("\n================ Dados Pessoais dos Adotantes ================\n")
+    selecionar_adotantes = Adotante.adotante.consultar_adotantes()
+    print("\n================ Dados de Endereço dos Adotantes ================\n")
+    selecionar_enderecos = Adotante_Endereço.endereco.consultar_enderecos()
+
 
 
 def cadastroanimal():

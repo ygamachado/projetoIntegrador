@@ -36,3 +36,23 @@ class adotante:
         print("\n===================== Cadastro concluído com sucesso =====================")
         cursor.close()
         connection.close()
+
+        def consultar_adotantes():
+            connection = mysql.connector.connect(
+                host="localhost",
+                user="root",
+                password="",
+                database="ong"
+            )
+            cursor = connection.cursor()
+
+            comando_select = f"SELECT * FROM adotante"
+
+            cursor.execute(comando_select)
+            results = cursor.fetchall()
+
+            cursor.close()
+            connection.close()
+
+            for result in results:
+                print(result)

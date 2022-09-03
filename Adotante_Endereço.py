@@ -37,3 +37,23 @@ class endereco(Adotante.adotante):
         connection.commit()
         cursor.close()
         connection.close()
+
+        def consultar_enderecos():
+            connection = mysql.connector.connect(
+                host="localhost",
+                user="root",
+                password="",
+                database="ong"
+            )
+            cursor = connection.cursor()
+
+            comando_select = f"SELECT * FROM endereço"
+
+            cursor.execute(comando_select)
+            results = cursor.fetchall()
+
+            cursor.close()
+            connection.close()
+
+            for result in results:
+                print(result)
