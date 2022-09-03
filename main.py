@@ -41,7 +41,7 @@ def consultando_adotantes():
     print("\n================ Dados de Endereço dos Adotantes ================\n")
     selecionar_enderecos = Adotante_Endereço.endereco.consultar_enderecos()
 
-def alterar_adotantes_pessoais():
+def alterarando_adotantes_pessoais():
     consultando_adotantes()
     id_adotante = int(input("\nDigite o índice do adotante: "))
     alterar = Adotante.adotante.selecionar_adotantes(id_adotante)
@@ -63,7 +63,7 @@ def alterar_adotantes_pessoais():
     else:
         print("\n===================== Os dados não foram alterados =====================\n")
 
-def alterar_adotantes_enderecos():
+def alterarando_adotantes_enderecos():
     consultando_adotantes()
     id_endereco = int(input("\nDigite o índice de endereço do adotante: "))
     alterar_endereco = Adotante_Endereço.endereco
@@ -80,7 +80,7 @@ def alterar_adotantes_enderecos():
     else:
         print("\n===================== Os dados não foram alterados =====================")
 
-def excluir_adotantes():
+def excluindo_adotantes():
     consultando_adotantes()
     id_adotante = int(input("\nDigite o índice do usuário a ser deletado: "))
     deletar = Adotante.adotante.selecionar_adotantes(id_adotante)
@@ -93,6 +93,10 @@ def excluir_adotantes():
     else:
         print("\n===================== Os dados não foram excluídos =====================")
 
+def logar():
+    usuario = input("Usuário: ")
+    senha = input("Senha: ")
+    Adotante.adotante.login(usuario, senha)
 
 def cadastroanimal():
 
@@ -259,6 +263,5 @@ def cadastroanimal():
 
     else:
         print("\n===================== Os dados não foram salvos =====================")
-
 
 cadastroanimal()
