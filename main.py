@@ -41,7 +41,44 @@ def consultando_adotantes():
     print("\n================ Dados de Endereço dos Adotantes ================\n")
     selecionar_enderecos = Adotante_Endereço.endereco.consultar_enderecos()
 
+def alterar_adotantes_pessoais():
+    dados_adotantes()
+    id_adotante = int(input("\nDigite o índice do adotante: "))
+    alterar = Adotante.adotante.selecionar_adotantes(id_adotante)
+    print("\nUsuário de ID", id_adotante, "selecionado")
+    nome = input("\nNovo nome: ")
+    nascimento = input("\nNova data de nascimento: ")
+    telefone1 = input("\nNovo telefone: ")
+    escolha = input("\nDeseja alterar/adicionar número de telefone opcional? s/n ")
+    if (escolha == "s") or (escolha == "S"):
+        telefone2 = input("\nNúmero de telefone opcional: ")
+    else:
+        telefone2 = None
+    email = input("\nNovo e-mail: ")
+    usuario = input("\nNovo nome de usuário: ")
+    senha = input("\nNova senha: ")
+    confirmar_dad = input("\nConfirmar alterações? s/n ")
+    if (confirmar_dad == "s") or (confirmar_dad == "S"):
+        alterar.atualizar_adotantes(id_adotante, nome, nascimento, telefone1, telefone2, email, usuario, senha)
+    else:
+        print("\n===================== Os dados não foram alterados =====================\n")
 
+def alterar_adotantes_enderecos():
+    dados_adotantes()
+    id_endereco = int(input("\nDigite o índice de endereço do adotante: "))
+    alterar_endereco = Adotante_Endereço.endereco
+    print("\nUsuário do ID de endereço", id_endereco, "selecionado")
+    logradouro = input("\nNovo logradouro: ")
+    numero = input("\nNovo número de residência: ")
+    bairro = input("\nNovo bairro: ")
+    cidade = input("\nNova cidade: ")
+    uf = input("\nNovo UF: ")
+    cep = input("\nNovo CEP: ")
+    confirmar_end = input("\nConfirmar alterações? s/n ")
+    if (confirmar_end == "s") or (confirmar_end == "S"):
+        alterar_endereco.atualizar_enderecos(id_endereco, id_endereco, logradouro, numero, bairro, cidade, uf, cep)
+    else:
+        print("\n===================== Os dados não foram alterados =====================")
 
 def cadastroanimal():
 
