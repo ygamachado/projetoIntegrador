@@ -94,8 +94,9 @@ def excluindo_adotantes():
         print("\n===================== Os dados não foram excluídos =====================")
 
 def logar():
-    usuario = input("Usuário: ")
-    senha = input("Senha: ")
+    print("\n===================== Tela de Login =====================")
+    usuario = input("\nUsuário: ")
+    senha = input("\nSenha: ")
     Adotante.adotante.login(usuario, senha)
 
 def cadastroanimal():

@@ -136,19 +136,18 @@ class adotante:
             password="",
             database="ong"
         )
-        cursor = connection.cursor()
-
-        comando = f"SELECT usuario, senha FROM adotante WHERE usuario = '{usuario}' AND senha = aes_encrypt('{senha}', 'ad')"
-        cursor.execute(comando)
-        results = cursor.fetchall()
-
+        lista = []
+        while len(lista) == 0:
+            cursor = connection.cursor()
+            comando = f"SELECT usuario, senha FROM adotante WHERE usuario = '{usuario}' AND senha = aes_encrypt('{senha}', 'ad')"
+            cursor.execute(comando)
+            results = cursor.fetchall()
+            for r in results:
+                lista.append(r)
+            if len(lista) == 0:
+                print("\n===================== [ERRO] Nome de usuário ou senha inválido, tente novamente! =====================")
+                usuario = input("\nUsuário: ")
+                senha = input("\nSenha: ")
         cursor.close()
         connection.close()
-        lista = []
-        for r in results:
-            lista.append(r)
-
-        if len(lista) == 0:
-            print("[ERRO] Nome de usuário ou senha inválido, tente novamente!")
-        else:
-            print("Login realizado com sucesso!")
+        print("\n===================== Login realizado com sucesso! =====================")
