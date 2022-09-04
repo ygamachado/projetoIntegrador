@@ -260,6 +260,7 @@ def cadastroanimal():
         print("\n===================== Os dados não foram salvos =====================")
 
 def atualizaranimais():
+    atualizar = animal.Animal
     print('================================================= ATUALIZAR OS DADOS DO ANIMAL ================================================================')
     print('')
 
@@ -354,66 +355,50 @@ def atualizaranimais():
         print('ERRO')
         print('COMANDO NÃO FOI SEGUIDO CORRETAMENTE')
     print('')
-
     # adotado?
     print('o animal ja foi adotado? S/N')
     adotado = input('digite:')
     print('')
-
     # deficincia
-
     print('o animal possui alguma deficiencia fisica? s/n')
     veridef = input('digite:')
-
     if (veridef == 's') or (veridef == 'S'):
-
         deficiente = 'S'
-
     elif (veridef == 'n') or (veridef == 'N'):
         deficiente = 'N'
-
     else:
         print('ERRO')
 
         print('COMANDO NÃO FOI SEGUIDO CORRETAMENTE')
     print('')
-
     # animal castardo
     print('animal é castrado? S/N')
     castrado = input('digite:')
     print('')
-
     #  exameas animal
     print('o animal a fez algum exame? S/N')
     veriex = input('digite:')
-
     if (veriex == 's') or (veriex == 'S'):
         print('quantos?')
         exames = int(input(('digite:')))
-
     elif (veriex == 'n') or (veriex == 'N'):
         exames = 0
-
     else:
         print('ERRO')
         print('COMANDO NÃO FOI SEGUIDO CORRETAMENTE')
     print('')
-
     # local que o animal foi encotrado
     print('qual foi o local que o animal foi encontrado/resgatado')
     local_encontro = input('digite:')
     print('')
-
     # data que o animal foi encontrado
-
     print('data que o animal foi encotrado')
     data_encontro = input('digite:')
     print('')
     print('DESEJA CONFIRMAR ATUALIZAÇÃO ? S/N')
     vericonfime=input('digite:')
-    atualizar = animal.Animal.atualizardadosanimais(id_animal,id_exame,nomeanimal,cor,porte,raca,idade,disponivel,adotado,deficiente,castrado,exames,local_encontro,data_encontro)
     if (vericonfime=='s') or (vericonfime=='S'):
-        atualizar.atualizardadosanimais(id_animal,id_exame,nomeanimal,cor,porte,raca,idade,disponivel,adotado,deficiente,castrado,exames,local_encontro,data_encontro)
+        atualizar.atualizardadosanimais(id_animal,id_exame, nomeanimal,cor,porte,raca,idade,disponivel,adotado,deficiente,castrado,exames,local_encontro,data_encontro)
         print('')
         print('================================================= ATUALIZAÇÃO SALVA COM SUCESSO  ================================================================')
     else:

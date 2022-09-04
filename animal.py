@@ -8,7 +8,7 @@ conexao = mysql.connector.connect(
 )
 
 
-class Animal ():
+class Animal:
 
 
     def __init__(self,id_exame, nomeanimal, cor, idade, raca,porte,disponivel, deficiente, adotado,castrado,exames,local_encontro,data_encontro):
@@ -71,24 +71,9 @@ class Animal ():
         )
 
         cursor=connection.cursor()
-        comando=f"UPDATE cad_animal SET id_animal=%s, id_exame=%s, nomeanimal=%s, cor=%s, porte=%s,raça=%s, idade=%s,disponivel=%s, adotado=%s, deficiente=%s,castrado=%s,exames=%s,local_encontro=%s,data_encontro=%s where id_animal='{id_animal}';"
-        data=(
-            f"{id_animal}",
-            f"{id_exame}"
-            f"{nomeanimal}",
-            f"{cor}",
-            f"{porte}",
-            f"{raca}",
-            f"{idade}",
-            f"{disponivel}",
-            f"{adotado}",
-            f"{deficiente}" 
-            f"{castrado}",
-            f"{exames}",
-            f"{local_encontro}",
-            f"{data_encontro}"
-        )
-        cursor.execute(comando, data)
+        comando=f"UPDATE cad_animal SET id_animal= '{id_animal}', id_exame='{id_exame}', nome='{nomeanimal}', cor='{cor}', porte='{porte}',raça='{raca}', idade='{idade}',disponivel='{disponivel}', adotado='{adotado}', deficiente='{deficiente}',castrado='{castrado}', quant_exames='{exames}',local_encontro='{local_encontro}',data_encontro='{data_encontro}' where id_animal='{id_animal}';"
+
+        cursor.execute(comando)
         connection.commit()
         cursor.close()
         connection.close()
