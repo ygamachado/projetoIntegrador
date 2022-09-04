@@ -71,7 +71,7 @@ class Animal ():
         )
 
         cursor=connection.cursor()
-        comando=f'UPDATE cad_animal SET id_exame=%s, nomeanimal=%s, cor=%s, porte=%s,raca=%s, idade=%s,disponivel=%s, adotado=%s, deficiente=%s,castrado=%s,exames=%s,local_encontro=%s,data_encontro=%s where id_animal="{id_animal}";'
+        comando=f'UPDATE cad_animal SET id_animal=%s, id_exame=%s, nomeanimal=%s, cor=%s, porte=%s,raca=%s, idade=%s,disponivel=%s, adotado=%s, deficiente=%s,castrado=%s,exames=%s,local_encontro=%s,data_encontro=%s where id_animal="{id_animal}";'
         data=(
             f"{id_animal}",
             f"{id_exame}"
