@@ -93,7 +93,6 @@ def excluir_adotantes():
     else:
         print("\n===================== Os dados não foram excluídos =====================")
 
-
 def cadastroanimal():
 
     print(' CADASTRO DE ANIMAIS')
@@ -260,5 +259,24 @@ def cadastroanimal():
     else:
         print("\n===================== Os dados não foram salvos =====================")
 
+def atualizaranimais():
+    print('================================================= ATUALIZAR OS DADOS DO ANIMAL ================================================================')
+    print('')
 
-cadastroanimal()
+    print('digite o indece do animal que pretende fazer a modificação')
+    id_animal=int(input('digite:'))
+    atualizar=animal.Animal.atualizardadosanimais(id_animal)
+    print('')
+    print('======================')
+    print('')
+    print('O QUE DESEJA MODIFICAR?')
+    print(' modificar (ID_EXAME) - (PRECIONE 1)\n modifcar (NOME) - (PRECINE 2 )\n modificar (COR) - (PRECIONE 3)\n modifcar (PORTE) - (PRECIONE 4)\n modificar (RAÇA) - (precione 5)\n modificar (IDADE ESTIMADA) - (PRECIONE 6)\n modicar (DESPONIVEL PARA ADOÇÃO) - (PRECIONE 7)\n modificar (ADOTADO) - (PRECIONE 8)\n modificar (DEFICENTE FISICO) - (PRECIONE 9)\n modificar (CASTRADO) - (PRECIONE 10)\n modicar (QUANTIDADE DE EXAMES) - (PRECIONE 11)\n modifcar (LOCAL ENCONTRADO) - (PRECIONE 12)\n modificar (DATA ENCONTRADO) - (PRECIONE 13) ')
+    # PARA ATUALIR S DATOS DO ANIMAL VOU FAZER UM MENU E PEDIR PARA O USURARRIO DIGITAR O USUARIO DIGITAR OPÇAO 1 PARA MUDAR O NOME, DOIS PARA MDAR A COR ....,
+    # DEPOIS VOU PERGUTAR SE ELE DESEJA FAZER OUTRA MODIFICAÇAO ELE VAI VOUTAR PARA ESSE MENU DAS OPÇOES DE ESCOLHA DA COLUNA E ELE VAI ESCOLHER OUTRA A PUTRA COLUNA QUE E LE QUE
+    # MODIFCAR , E SE ELE NAO QUISER MODIFICAR MAIS NADA VAI PERGUNTAR SE ELE DESEJA FAZER O SALVAMENTO DA ATUALIZAÇAO FEITA DPS EU VOU FAZER A REFERENCIA DAAS VARIAVEIS A MINHA
+    # FUNÇAO DA CLASSE ANIMAL
+
+
+
+
+

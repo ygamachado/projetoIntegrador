@@ -11,8 +11,8 @@ conexao = mysql.connector.connect(
 class Animal ():
 
 
-    def __init__(self,id_exame, nomeanimal, cor, idade, raca,porte,disponivel, deficiente, adotado,castrado,exames,local_encontro,data_encontro):
-
+    def __init__(self,id_animal,id_exame, nomeanimal, cor, idade, raca,porte,disponivel, deficiente, adotado,castrado,exames,local_encontro,data_encontro):
+        self.id_animal=id_animal
         self.ide_exame = id_exame
         self.nome = nomeanimal
         self.idade = idade
@@ -26,6 +26,7 @@ class Animal ():
         self.exames=exames
         self.local_encontro=local_encontro
         self.data_encontro=data_encontro
+
 
     @classmethod
     def cadastrar(self,id_exame, nomeanimal, cor, porte,raca, idade,disponivel, adotado, deficiente,castrado,exames,local_encontro,data_encontro):
@@ -59,10 +60,38 @@ class Animal ():
         cursor.close()
         connection.close()
 
+    @classmethod
+    def atualizardadosanimais(self,id_animal,id_exame, nomeanimal, cor, porte,raca, idade,disponivel, adotado, deficiente,castrado,exames,local_encontro,data_encontro):
 
+        connection=mysql.connector.connect(
+            host='localhost',
+            user='root',
+            password='',
+            database='ong'
+        )
 
-
-
+        cursor=connection.cursor()
+        comando=f'UPDATE cad_animal SET id_exame=%s, nomeanimal=%s, cor=%s, porte=%s,raca=%s, idade=%s,disponivel=%s, adotado=%s, deficiente=%s,castrado=%s,exames=%s,local_encontro=%s,data_encontro=%s where id_animal="{id_animal}";'
+        data=(
+            f"{id_animal}",
+            f"{id_exame}"
+            f"{nomeanimal}",
+            f"{cor}",
+            f"{porte}",
+            f"{raca}",
+            f"{idade}",
+            f"{disponivel}",
+            f"{adotado}",
+            f"{deficiente}" 
+            f"{castrado}",
+            f"{exames}",
+            f"{local_encontro}",
+            f"{data_encontro}"
+        )
+        cursor.execute(comando, data)
+        connection.commit()
+        cursor.close()
+        connection.close()
 
 
 
