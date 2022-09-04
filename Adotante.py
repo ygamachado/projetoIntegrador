@@ -20,7 +20,7 @@ class adotante:
             database="ong"
         )
         cursor = connection.cursor()
-        comando_insert = "INSERT INTO adotante (id_adotante, nome, data_nasc, telefone1, telefone2, email, usuario, senha) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+        comando_insert = "INSERT INTO adotante (id_adotante, nome, data_nasc, telefone1, telefone2, email, usuario, senha) VALUES (%s, %s, %s, %s, %s, %s, %s, aes_encrypt(%s, 'ad'))"
         data = (
             f'{id_adotante}',
             f'{nome}',
@@ -127,3 +127,27 @@ class adotante:
         connection.close()
 
         print("\n=====================", recordsaffected, "Registro excluído com sucesso =====================")
+
+    @classmethod
+    def login(self, usuario, senha):
+        connection = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="",
+            database="ong"
+        )
+        lista = []
+        while len(lista) == 0:
+            cursor = connection.cursor()
+            comando = f"SELECT usuario, senha FROM adotante WHERE usuario = '{usuario}' AND senha = aes_encrypt('{senha}', 'ad')"
+            cursor.execute(comando)
+            results = cursor.fetchall()
+            for r in results:
+                lista.append(r)
+            if len(lista) == 0:
+                print("\n===================== [ERRO] Nome de usuário ou senha inválido, tente novamente! =====================")
+                usuario = input("\nUsuário: ")
+                senha = input("\nSenha: ")
+        cursor.close()
+        connection.close()
+        print("\n===================== Login realizado com sucesso! =====================")
