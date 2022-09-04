@@ -11,8 +11,8 @@ conexao = mysql.connector.connect(
 class Animal ():
 
 
-    def __init__(self,id_animal,id_exame, nomeanimal, cor, idade, raca,porte,disponivel, deficiente, adotado,castrado,exames,local_encontro,data_encontro):
-        self.id_animal=id_animal
+    def __init__(self,id_exame, nomeanimal, cor, idade, raca,porte,disponivel, deficiente, adotado,castrado,exames,local_encontro,data_encontro):
+
         self.ide_exame = id_exame
         self.nome = nomeanimal
         self.idade = idade
@@ -71,7 +71,7 @@ class Animal ():
         )
 
         cursor=connection.cursor()
-        comando=f'UPDATE cad_animal SET id_animal=%s, id_exame=%s, nomeanimal=%s, cor=%s, porte=%s,raca=%s, idade=%s,disponivel=%s, adotado=%s, deficiente=%s,castrado=%s,exames=%s,local_encontro=%s,data_encontro=%s where id_animal="{id_animal}";'
+        comando=f"UPDATE cad_animal SET id_animal=%s, id_exame=%s, nomeanimal=%s, cor=%s, porte=%s,raça=%s, idade=%s,disponivel=%s, adotado=%s, deficiente=%s,castrado=%s,exames=%s,local_encontro=%s,data_encontro=%s where id_animal='{id_animal}';"
         data=(
             f"{id_animal}",
             f"{id_exame}"
