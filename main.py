@@ -409,6 +409,11 @@ def atualizaranimais():
     # MODIFCAR , E SE ELE NAO QUISER MODIFICAR MAIS NADA VAI PERGUNTAR SE ELE DESEJA FAZER O SALVAMENTO DA ATUALIZAÇAO FEITA DPS EU VOU FAZER A REFERENCIA DAAS VARIAVEIS A MINHA
     # FUNÇAO DA CLASSE ANIMAL
 
+def logar():
+    print("\n===================== Tela de Login =====================")
+    usuario = input("\nUsuário: ")
+    senha = input("\nSenha: ")
+    Adotante.adotante.login(usuario, senha)
 
 
 
