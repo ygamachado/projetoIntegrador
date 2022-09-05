@@ -2,7 +2,7 @@ import Adotante
 import Adotante_Endereço
 import animal
 import Formulário
-
+import os
 
 # -- Método para cadastro de adotante
 
@@ -445,4 +445,192 @@ def preenchimento_formulario():
         print("\n===================== O formulário não foi enviado =====================")
 
 
-atualizaranimais()
+def menu_funcionarioLI():
+    print("Deseja realizar qual das opções abaixo? ")
+    print("1 = Adicionar um novo cliente")
+    print("2 = Consultar dados de clientes cadastrados")
+    print("3 = Alterar dados de clientes")
+    print("4 = Deseja Deletar Usuários?")
+    print("5 = Sair do Programa")
+    print("6 = Voltar")
+
+
+def menu_adotanteLI():
+    print("Deseja realizar qual das opções abaixo? ")
+    print("")
+    print("1 = Consultar seus dados?")
+    print("2 = Alterar seus dados?")
+    print("3 = Acessar Questionário")
+    print("4 = Sair do Programa")
+    print("5 = Voltar")
+
+
+def menu_animal():
+    print("Deseja realizar qual das opções abaixo?")
+    print('')
+    print("1 = Adicionar um novo Animal")
+    print("2 = Consultar dados de Animais Cadastrados")
+    print("3 = Alterar dados de Animais")
+    print("4 = Sair do Programa")
+
+
+def menu_parte_animal():
+    print("Deseja realizar qual das opções abaixo?")
+    print('')
+    print("2 = Consultar dados de Animais Cadastrados")
+    print("3 = Sair do Programa")
+    print("")
+    print("===========Alerta=========")
+    print("NO MOMENTO VOCÊ PODE FAZER SOMENTE UMA OPÇÃO")
+
+
+def Menu_principal():
+    print("========================================================")
+    print('============== MENU=============')
+    print('\n')
+    print("MENU DE CLIENTE: Digite 1")
+    print("MENU DE ANIMAL: Digite 2")
+    print("0 = Volte ao Sistema de Login")
+
+
+def Menu():
+    print("========================================================")
+    print('============== SISTEMAS LOGINS =============')
+    print('\n')
+    print("SISTEMA LOGIN DE FUNCIONÁRIO: DIGITE 1 ")
+    print("SISTEMA LOGIN DE CLIENTE: DIGITE 2 ")
+
+
+dnv_login = 100
+abri_menu = 0
+abri_funcionario = 70
+abri_cliente = 50
+while abri_menu == 0:
+
+    Menu()
+    direcao = int(input("> "))
+    while dnv_login == 100:
+        if (direcao == 1):
+            login1 = input("Digite o email:")
+            senha1 = input('Digite a senha')
+            if (login1 == 'empresa@gmail.com' and senha1 == '123456'):
+                while abri_funcionario == 70:
+                    os.system("cls")
+                    print("=============Olá Funcionário=============")
+                    Menu_principal()
+                    escolha = int(input("> "))
+                    if (escolha == 1):
+                        os.system("cls")
+                        menu_funcionarioLI()
+                        opcao1 = int(input(">"))
+
+                        if (opcao1 == 1):
+                            os.system("cls")
+                            cadastrando_adotante()
+                            abri_funcionario = 70
+
+                        elif (opcao1 == 2):
+                            os.system("cls")
+                            consultando_adotantes()
+                            os.system("pause")
+                            abri_funcionario = 70
+
+                        elif (opcao1 == 3):
+                            os.system("cls")
+                            print('====Sistemas de Alteração de Dados=====')
+                            print('')
+                            print('Qual das duas opções?')
+                            print("")
+                            print("Atualizar Dados Pessoais de Adotante: Digite 1")
+                            print('Atualizar somente o Endereço: Digite qualquer número')
+                            Resposta = input("Resposta: ")
+                            while Resposta != 1 or Resposta != 2:
+                                if (Resposta == 1):
+                                    alterarando_adotantes_pessoais()
+                                    abri_funcionario = 70
+
+                                elif (Resposta == 2):
+                                    alterarando_adotantes_enderecos()
+                                    abri_funcionario = 70
+
+                        elif (opcao1 == 4):
+                            os.system("cls")
+                            excluindo_adotantes()
+                            abri_funcionario = 70
+                        elif (opcao1 == 5):
+                            exit()
+
+                    elif (escolha == 2):
+                        os.system("cls")
+                        menu_animal()
+                        opcao2 = int(input("Digite:"))
+
+                        if (opcao2 == 1):
+                            os.system("cls")
+                            cadastroanimal()
+                            print('')
+                            input("Digite 1 : Para Voltar ao Menu")
+
+                        elif (opcao2 == 2):
+                            os.system("cls")
+                            print("sem informações ainda")
+
+                        elif (opcao2 == 3):
+                            os.system("cls")
+                            print("sem informações ainda")
+                        elif (opcao1 == 4):
+                            exit()
+
+                if (escolha == 0):
+                    print("voltando...")
+                    os.system("pause")
+                    abri_menu == 0
+
+
+            elif (login1 != 'empresa@gmail.com' and senha1 != '123456'):
+                dnv_login = 100
+                os.system("cls")
+
+        elif (direcao == 2):
+            os.system("cls")
+            logar()
+            while abri_cliente == 50:
+                print("=============Olá Cliente=============")
+                # coloque aqui a função de login de cliente
+                Menu_principal()
+                caso = int(input("> "))
+                if (caso == 1):
+                    os.system("cls")
+                    while abri_cliente == 50:
+                        menu_adotanteLI()
+                        x = int(input("> "))
+                        if (x == 1):
+                            input("esta aqui:")
+                            abri_cliente = 50
+
+                        elif (x == 2):
+                            input("ta aqui então")
+                            abri_cliente = 50
+
+                        elif (x == 3):
+                            preenchimento_formulario()
+                            abri_cliente = 50
+
+                        elif (x == 4):
+                            exit()
+
+                elif (caso == 2):
+                    os.system("cls")
+                    menu_parte_animal()  # DÊ UMA OLHADA LÁ NO MENU DESTA PARTE
+                    z = int(input(">  "))
+                    if (z == 1):
+                        print("acrescentar")
+                        # colocar consulta de dados de animais aqui
+                        abri_cliente = 50
+
+                    elif (z == 2):
+                        print("acrescentar")
+                        # colocar adoção de animais aqui
+                        abri_cliente = 50
+                    elif (z == 3):
+                        exit()
