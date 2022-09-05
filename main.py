@@ -1,6 +1,8 @@
 import Adotante
 import Adotante_Endereço
 import animal
+import Formulário
+
 
 # -- Método para cadastro de adotante
 
@@ -415,6 +417,32 @@ def logar():
     senha = input("\nSenha: ")
     Adotante.adotante.login(usuario, senha)
 
+def preenchimento_formulario():
+    print("\n================ Formulário de Adoção ================")
+    moradores = input("\nCom quem você mora? ")
+    motivo = input("\nPor que quer adotar um animal? ")
+    verificar_animais = input("\nPossui outros animais? s/n ")
+    if (verificar_animais == "s") or (verificar_animais == "S"):
+        possui_animais = "S"
+        animais = input("Quais? ")
+    else:
+        possui_animais = "N"
+        animais = "Nenhum"
+    profissao = input("\nO que faz/Com o que trabalha? ")
+    moradia = input("\nMora em casa ou apartamento? ")
+    favor_adocao = input("\nTodo em casa estão a favor da adoção? s/n ")
+    verificar_despesas = input("\nAcha que terá condição de viabilizar todas as despesas necessárias para garantir o bem estar do animal?\n(Vacinas. castração, cuidados médicos em caso de doença...) s/n ")
+    if (verificar_despesas == "s") or (verificar_despesas == "S"):
+        despesas = "S"
+    else:
+        despesas = "N"
+    rotina = input("\nQual sua rotina? ")
+    tempo_fora = input("\nQuanto tempo você fica fora de casa? ")
+    confirmar = input("\nDeseja enviar as respostas? s/n ")
+    if (confirmar == "s") or (confirmar == "S"):
+        Formulário.formulario.formulario_perguntas(moradores, motivo, possui_animais, animais, profissao, moradia, favor_adocao, despesas, rotina, tempo_fora)
+    else:
+        print("\n===================== O formulário não foi enviado =====================")
 
 
 atualizaranimais()
