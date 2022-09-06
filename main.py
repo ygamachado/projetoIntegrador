@@ -480,6 +480,32 @@ def preenchimento_formulario():
     else:
         print("\n===================== O formulário não foi enviado =====================")
 
+def formularios_pendentes():
+    print("\n================ Formulários Pendentes ================")
+    formularios = Formulário.formulario.formularios_semresposta()
+
+def formularios_aprovados():
+    print("\n================ Formulários Aprovados ================")
+    formularios = Formulário.formulario.formularios_foramaprovados()
+
+def formularios_reprovados():
+    print("\n================ Formulários Reprovados ================")
+    formularios = Formulário.formulario.formularios_foramreprovados()
+
+def formularios_aprovacao():
+    formularios_pendentes()
+    id_formulario = int(input("\nDigite o índice do formulário: "))
+    print("\nFormulário de ID", id_formulario, "selecionado")
+    aprovar = input("\nAprovar pedido de adoção? s/n ")
+    if (aprovar == "s") or (aprovar == "S"):
+        aprovacao = "s"
+        Formulário.formulario.aprovar_formularios(aprovacao, id_formulario)
+        print("\n===================== Adoção aprovada =====================\n")
+    else:
+        aprovacao = "n"
+        Formulário.formulario.aprovar_formularios(aprovacao, id_formulario)
+        print("\n===================== A adoção não foi aprovada =====================")
+
 
 def menu_funcionarioLI():
     print("Deseja realizar qual das opções abaixo? ")
