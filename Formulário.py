@@ -14,7 +14,7 @@ class formulario:
         self.tempo_fora = tempo_fora
 
     @classmethod
-    def formulario_perguntas(self, moradores, motivo, possui_animais, animais, profissao, moradia, favor_adocao, despesas, rotina, tempo_fora):
+    def formulario_perguntas(self, id_adotante, moradores, motivo, possui_animais, animais, profissao, moradia, favor_adocao, despesas, rotina, tempo_fora):
         connection = mysql.connector.connect(
             host="localhost",
             user="root",
@@ -22,8 +22,9 @@ class formulario:
             database="ong"
         )
         cursor = connection.cursor()
-        comando_insert = "INSERT INTO formulario (moradores, motivo_adocao, possui_animais, quais_animais, profissao, tipo_moradia, favor_adocao, condicao_despesas, rotina, tempo_fora) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+        comando_insert = "INSERT INTO formulario (id_adotante, moradores, motivo_adocao, possui_animais, quais_animais, profissao, tipo_moradia, favor_adocao, condicao_despesas, rotina, tempo_fora) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
         data = (
+            f'{id_adotante}',
             f'{moradores}',
             f'{motivo}',
             f'{possui_animais}',

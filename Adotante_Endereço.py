@@ -14,7 +14,7 @@ class endereco(Adotante.adotante):
         self.__cep = cep
 
     @classmethod
-    def cadastro_endereco(self, id_endereco, id_adotante, logradouro, numero, bairro, cidade, uf, cep):
+    def cadastro_endereco(self, id_adotante, logradouro, numero, bairro, cidade, uf, cep):
         connection = mysql.connector.connect(
             host="localhost",
             user="root",
@@ -22,9 +22,8 @@ class endereco(Adotante.adotante):
             database="ong"
         )
         cursor = connection.cursor()
-        comando_insert = "INSERT INTO endereço (id_endereço, id_adotante, logradouro, numero, bairro, cidade, uf, cep) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+        comando_insert = "INSERT INTO endereço (id_adotante, logradouro, numero, bairro, cidade, uf, cep) VALUES (%s, %s, %s, %s, %s, %s, %s)"
         data = (
-            f'{id_endereco}',
             f'{id_adotante}',
             f'{logradouro}',
             f'{numero}',
@@ -46,17 +45,16 @@ class endereco(Adotante.adotante):
             database="ong"
         )
         cursor = connection.cursor()
-
-        comando_select = f"SELECT * FROM endereço"
-
-        cursor.execute(comando_select)
+        select = f"SELECT id_endereço, id_adotante, logradouro, numero, bairro, cidade, uf, cep FROM endereço;"
+        cursor.execute(select)
         results = cursor.fetchall()
-
         cursor.close()
         connection.close()
+        for lista in results:
+            print("\nID endereço:", lista[0], "| ID adotante:", lista[1], "| Logradouro:", lista[2], "| Número da residência:", lista[3], "| Bairro:", lista[4], "| Cidade:", lista[5], "| UF:", lista[6], "| CEP:", lista[7], "\n--------------------")
+        if len(results) == 0:
+            print("\n==================== Não há usuários cadastrados ====================")
 
-        for result in results:
-            print(result)
 
     @classmethod
     def atualizar_enderecos(self, id_endereco, id_adotante, logradouro, numero, bairro, cidade, uf, cep):

@@ -12,7 +12,7 @@ class adotante:
         self.__senha = senha
 
     @classmethod
-    def cadastro_adotante(self, id_adotante, nome, nascimento, telefone1, telefone2, email, usuario, senha):
+    def cadastro_adotante(self, nome, nascimento, telefone1, telefone2, email, usuario, senha):
         connection = mysql.connector.connect(
             host="localhost",
             user="root",
@@ -20,9 +20,8 @@ class adotante:
             database="ong"
         )
         cursor = connection.cursor()
-        comando_insert = "INSERT INTO adotante (id_adotante, nome, data_nasc, telefone1, telefone2, email, usuario, senha) VALUES (%s, %s, %s, %s, %s, %s, %s, aes_encrypt(%s, 'ad'))"
+        comando_insert = "INSERT INTO adotante (nome, data_nasc, telefone1, telefone2, email, usuario, senha) VALUES (%s, %s, %s, %s, %s, %s, aes_encrypt(%s, 'ad'))"
         data = (
-            f'{id_adotante}',
             f'{nome}',
             f'{nascimento}',
             f'{telefone1}',
@@ -45,37 +44,17 @@ class adotante:
             database="ong"
         )
         cursor = connection.cursor()
-
-        comando_select = f"SELECT * FROM adotante"
-
-        cursor.execute(comando_select)
+        select = f"SELECT id_adotante, id_animal, nome, data_nasc, telefone1, telefone2, email, usuario, senha FROM adotante;"
+        cursor.execute(select)
         results = cursor.fetchall()
-
         cursor.close()
         connection.close()
-
-        for result in results:
-            print(result)
+        for lista in results:
+            print("\nID adotante:", lista[0], "| ID animal:", lista[1], "| Nome completo:", lista[2], "| Data de Nascimento:", lista[3], "| Número de telefone:", lista[4], "| Número de telefone opcional:", lista[5], "| E-mail:", lista[6], "| Nome de usuário:", lista[7], "| Senha:", lista[8], "\n--------------------")
+        if len(results) == 0:
+            print("\n==================== Não há usuários cadastrados ====================")
 
     @classmethod
-    def selecionar_adotantes(cls, id_adotante):
-        connection = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="",
-            database="ong"
-        )
-        select = f"SELECT id_adotante, nome, data_nasc, telefone1, telefone2, email, usuario, senha FROM ong.adotante WHERE id_adotante = '{id_adotante}';"
-        cursor = connection.cursor()
-        cursor.execute(select)
-        row = cursor.fetchone()
-        cursor.close()
-        connection.close()
-        lista = []
-        for r in row:
-            lista.append(r)
-        return adotante(lista[0], lista[1], lista[2], lista[3], lista[4], lista[5], lista[6], lista[7])
-
     def atualizar_adotantes(self, id_adotante, nome, nascimento, telefone1, telefone2, email, usuario, senha):
         connection = mysql.connector.connect(
             host="localhost",
@@ -106,6 +85,7 @@ class adotante:
 
         print("\n=====================", recordsaffected, "Registro alterado com sucesso =====================\n")
 
+    @classmethod
     def deletar_adotantes(self, id_adotante):
         connection = mysql.connector.connect(
             host="localhost",

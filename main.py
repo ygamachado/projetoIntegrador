@@ -3,7 +3,7 @@ import Adotante_Endereço
 import animal
 import Formulário
 import os
-
+import mysql.connector
 
 def consulta_animal():
     print('====================================== CONSULTAR DADOS DO ANIMAL ======================================================')
@@ -14,7 +14,6 @@ def consulta_animal():
 
 def cadastrando_adotante():
     print("\n================ Dados Pessoais ================")
-    id_adotante = input("\nID do Adotante: ")
     usuario = input("\nNome de Usuário (Limite de 25 dígitos): ")
     senha = input("\nSenha (Limite de 8 dígitos): ")
     nome = input("\nNome Completo: ")
@@ -22,37 +21,49 @@ def cadastrando_adotante():
     telefone1 = input("\nNúmero de Telefone: ")
     escolha = input("\nAdicionar número de telefone opcional? s/n ")
     if (escolha == "s") or (escolha == "S"):
-        telefone2 = input("\nNúmero de Telefone Opcional: ")
+        telefone2 = input("\nNúmero de Telefone opcional: ")
     else:
         telefone2 = None
     email = input("\nE-mail: ")
     print("\n================ Dados de Endereço ================")
-    id_endereco = input("\nID do Endereço: ")
     logradouro = input("\nLogradouro: ")
     numero = input("\nNúmero da Residência: ")
     bairro = input("\nBairro: ")
     cidade = input("\nCidade: ")
     uf = input("\nUF: ")
     cep = input("\nCEP: ")
-    dados_end = Adotante_Endereço.endereco(id_endereco, logradouro, numero, bairro, cidade, uf, cep, id_adotante, nome, nascimento, telefone1, telefone2, email, usuario, senha)
-    dados_ad = Adotante.adotante(id_adotante, nome, nascimento, telefone1, telefone2, email, usuario, senha)
+    dados_end = Adotante_Endereço.endereco
+    dados_ad = Adotante.adotante
     confirmar = input("\nConfirmar cadastro? s/n ")
     if (confirmar == "s") or (confirmar == "S"):
-        dados_end.cadastro_endereco(id_endereco, id_adotante, logradouro, numero, bairro, cidade, uf, cep)
-        dados_ad.cadastro_adotante(id_adotante, nome, nascimento, telefone1, telefone2, email, usuario, senha)
+        dados_ad.cadastro_adotante(nome, nascimento, telefone1, telefone2, email, usuario, senha)
+        connection = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="",
+            database="ong"
+        )
+        cursor = connection.cursor()
+        comando_select = f"SELECT MAX(id_adotante) FROM adotante"
+        cursor.execute(comando_select)
+        id = cursor.fetchone()
+        cursor.close()
+        connection.close()
+        id_adotante = int(id[0])
+        dados_end.cadastro_endereco(id_adotante, logradouro, numero, bairro, cidade, uf, cep)
     else:
         print("\n===================== Os dados não foram salvos =====================")
 
 def consultando_adotantes():
-    print("\n================ Dados Pessoais dos Adotantes ================\n")
+    print("\n================ Dados Pessoais dos Adotantes ================")
     selecionar_adotantes = Adotante.adotante.consultar_adotantes()
-    print("\n================ Dados de Endereço dos Adotantes ================\n")
+    print("\n================ Dados de Endereço dos Adotantes ================")
     selecionar_enderecos = Adotante_Endereço.endereco.consultar_enderecos()
 
 def alterar_adotantes_pessoais():
     consultando_adotantes()
     id_adotante = int(input("\nDigite o índice do adotante: "))
-    alterar = Adotante.adotante.selecionar_adotantes(id_adotante)
+    alterar = Adotante.adotante
     print("\nUsuário de ID", id_adotante, "selecionado")
     nome = input("\nNovo nome: ")
     nascimento = input("\nNova data de nascimento: ")
@@ -61,7 +72,7 @@ def alterar_adotantes_pessoais():
     if (escolha == "s") or (escolha == "S"):
         telefone2 = input("\nNúmero de telefone opcional: ")
     else:
-        telefone2 = None
+        telefone2 = "Não possui"
     email = input("\nNovo e-mail: ")
     usuario = input("\nNovo nome de usuário: ")
     senha = input("\nNova senha: ")
@@ -91,7 +102,8 @@ def alterar_adotantes_enderecos():
 def excluir_adotantes():
     consultando_adotantes()
     id_adotante = int(input("\nDigite o índice do usuário a ser deletado: "))
-    deletar = Adotante.adotante.selecionar_adotantes(id_adotante)
+    deletar = Adotante.adotante
+    print("\nUsuário de ID", id_adotante, "selecionado")
     deletar_end = Adotante_Endereço.endereco
     print("\nTem certeza que deseja deletar o usuário de ID", id_adotante, "? s/n ")
     confirmar = input("> ")
@@ -442,28 +454,29 @@ def logar():
 
 def preenchimento_formulario():
     print("\n================ Formulário de Adoção ================")
+    id_adotante = input("\nInforme seu ID: ")
     moradores = input("\nCom quem você mora? ")
     motivo = input("\nPor que quer adotar um animal? ")
     verificar_animais = input("\nPossui outros animais? s/n ")
     if (verificar_animais == "s") or (verificar_animais == "S"):
-        possui_animais = "S"
-        animais = input("Quais? ")
+        possui_animais = "s"
+        animais = input("\nQuais? ")
     else:
-        possui_animais = "N"
+        possui_animais = "n"
         animais = "Nenhum"
     profissao = input("\nO que faz/Com o que trabalha? ")
     moradia = input("\nMora em casa ou apartamento? ")
     favor_adocao = input("\nTodo em casa estão a favor da adoção? s/n ")
     verificar_despesas = input("\nAcha que terá condição de viabilizar todas as despesas necessárias para garantir o bem estar do animal?\n(Vacinas. castração, cuidados médicos em caso de doença...) s/n ")
     if (verificar_despesas == "s") or (verificar_despesas == "S"):
-        despesas = "S"
+        despesas = "s"
     else:
-        despesas = "N"
+        despesas = "n"
     rotina = input("\nQual sua rotina? ")
     tempo_fora = input("\nQuanto tempo você fica fora de casa? ")
     confirmar = input("\nDeseja enviar as respostas? s/n ")
     if (confirmar == "s") or (confirmar == "S"):
-        Formulário.formulario.formulario_perguntas(moradores, motivo, possui_animais, animais, profissao, moradia, favor_adocao, despesas, rotina, tempo_fora)
+        Formulário.formulario.formulario_perguntas(id_adotante, moradores, motivo, possui_animais, animais, profissao, moradia, favor_adocao, despesas, rotina, tempo_fora)
     else:
         print("\n===================== O formulário não foi enviado =====================")
 
