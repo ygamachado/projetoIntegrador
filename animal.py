@@ -78,8 +78,43 @@ class Animal:
         cursor.close()
         connection.close()
 
+    @classmethod
+    def consulta_animal(self,id_animal):
 
+        connection=mysql.connector.connect(
+            host='localhost',
+            user='root',
+            password='',
+            database='ong'
+        )
+        cursor=connection.cursor()
 
+        comando=f'select id_animal, id_exame, nome, cor, porte, raça, idade, disponivel, adotado, deficiente, castrado, quant_exames,local_encontro, data_encontro from cad_animal where  id_animal="{id_animal}" '
+        cursor.execute(comando)
+        resultado=cursor.fetchall()
+        print(resultado)
+        cursor.close()
+        connection.close()
+
+    @classmethod
+
+    def deletar_aninal(self,id_animal):
+
+        connection=mysql.connector.connect(
+            host='localhost',
+            user='root',
+            password='',
+            database='ong'
+        )
+        cursor=connection.cursor()
+
+        comando=f'delete from cad_animal where id_animal= "{id_animal}"'
+
+        cursor.execute(comando)
+        connection.commit()
+
+        cursor.close()
+        connection.close()
 
 
 

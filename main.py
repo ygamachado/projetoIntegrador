@@ -4,7 +4,13 @@ import animal
 import Formulário
 import os
 
-# -- Método para cadastro de adotante
+
+def consulta_animal():
+    print('====================================== CONSULTAR DADOS DO ANIMAL ======================================================')
+    pesquisa = animal.Animal
+    print('DIGITE O INDECE DO ANIMAL QUE DESEJA FAZER A PESQUISA')
+    indice_animal=int(input('digite:'))
+    pesquisa.consulta_animal(indice_animal)
 
 def cadastrando_adotante():
     print("\n================ Dados Pessoais ================")
@@ -97,7 +103,7 @@ def excluir_adotantes():
 
 def cadastroanimal():
 
-    print(' CADASTRO DE ANIMAIS')
+    print('========================================= ATUALIZAR OS DADOS DO ANIMAL ================================================================')
     print('')
 
 
@@ -261,19 +267,36 @@ def cadastroanimal():
     else:
         print("\n===================== Os dados não foram salvos =====================")
 
+def excluir_animal():
+    print('================================================= EXCLUIR CADASTRO DE ANIMAL ================================================================')
+    print('digite o indece do animal que deseja excluir')
+    id_animal=int(input('digite'))
+    obj_excluir=animal.Animal.deletar_aninal(id_animal)
+    obj_excluir=animal.Animal
+    print('TEM CERTEZA QUE DESEJA (EXCLUIR0) ESSE DADOS? S/N')
+    verideletar=input('digite:')
+
+    if (verideletar=='s') or (verideletar=='S'):
+        obj_excluir.deletar_aninal(id_animal)
+        print("=====================  DADOS EXCLUIDOS COM SUCESSO  =====================")
+
+
+    elif (verideletar == 'n') or (verideletar == 'N'):
+        print("===================== OS DADOS NÃO FORAM EXCLUIDOS =====================")
+    else:
+        print('ERRO')
+        print('NENHUMA DAS OPÇÕES INDICADAS FOI RESPEITADAS')
+
 def atualizaranimais():
     atualizar = animal.Animal
-    print('================================================= ATUALIZAR OS DADOS DO ANIMAL ================================================================')
+    print('========================================== ATUALIZAR OS DADOS DO ANIMAL ================================================================')
     print('')
 
     print('digite o indece do animal que pretende fazer a modificação')
     id_animal=int(input('digite:'))
     print('')
-    print('======================')
-    print('')
-    print('O QUE DESEJA MODIFICAR?')
-    print(' modificar (ID_EXAME) - (PRECIONE 1)\n modifcar (NOME) - (PRECINE 2 )\n modificar (COR) - (PRECIONE 3)\n modifcar (PORTE) - (PRECIONE 4)\n modificar (RAÇA) - (precione 5)\n modificar (IDADE ESTIMADA) - (PRECIONE 6)\n modicar (DESPONIVEL PARA ADOÇÃO) - (PRECIONE 7)\n modificar (ADOTADO) - (PRECIONE 8)\n modificar (DEFICENTE FISICO) - (PRECIONE 9)\n modificar (CASTRADO) - (PRECIONE 10)\n modicar (QUANTIDADE DE EXAMES) - (PRECIONE 11)\n modifcar (LOCAL ENCONTRADO) - (PRECIONE 12)\n modificar (DATA ENCONTRADO) - (PRECIONE 13) ')
-    print(' CADASTRO DE ANIMAIS')
+    print('FAÇA AS MODIFCAÇÕES A SEGUIR')
+    # print(' modificar (ID_EXAME) - (PRECIONE 1)\n modifcar (NOME) - (PRECINE 2 )\n modificar (COR) - (PRECIONE 3)\n modifcar (PORTE) - (PRECIONE 4)\n modificar (RAÇA) - (precione 5)\n modificar (IDADE ESTIMADA) - (PRECIONE 6)\n modicar (DESPONIVEL PARA ADOÇÃO) - (PRECIONE 7)\n modificar (ADOTADO) - (PRECIONE 8)\n modificar (DEFICENTE FISICO) - (PRECIONE 9)\n modificar (CASTRADO) - (PRECIONE 10)\n modicar (QUANTIDADE DE EXAMES) - (PRECIONE 11)\n modifcar (LOCAL ENCONTRADO) - (PRECIONE 12)\n modificar (DATA ENCONTRADO) - (PRECIONE 13) ')
     print('')
 
     # n sei ara q serve esse id exame
@@ -500,6 +523,10 @@ def Menu():
     print("SISTEMA LOGIN DE FUNCIONÁRIO: DIGITE 1 ")
     print("SISTEMA LOGIN DE CLIENTE: DIGITE 2 ")
 
+consulta_animal()
+atualizaranimais()
+cadastroanimal()
+excluir_animal()
 
 dnv_login = 100
 abri_menu = 0
@@ -634,3 +661,4 @@ while abri_menu == 0:
                         abri_cliente = 50
                     elif (z == 3):
                         exit()
+
